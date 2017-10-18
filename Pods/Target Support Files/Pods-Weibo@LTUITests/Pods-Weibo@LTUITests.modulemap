@@ -1,0 +1,6 @@
+framework module Pods_Weibo_LTUITests {
+  umbrella header "Pods-Weibo@LTUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
