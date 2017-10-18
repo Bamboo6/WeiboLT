@@ -14,14 +14,14 @@ class MainViewController: UITabBarController {
         super.viewDidLoad()
         addChildViewControllers()
         setupComposedButton()
-        NetworkTools.sharedTools.request(method: HMRequestMethod.GET, URLString: "http://httpbin.org/get", parameters: ["name": "zhangsan" as AnyObject ,"age": 18 as AnyObject]){
-            (result,error)->() in
-            print(result)
-        }
-        NetworkTools.sharedTools.request(method: HMRequestMethod.POST, URLString: "http://httpbin.org/post", parameters: ["name": "zhangsan" as AnyObject ,"age": 18 as AnyObject]){
-            (result,error)->() in
-            print(result)
-        }
+//        NetworkTools.sharedTools.request(method: HMRequestMethod.GET, URLString: "http://httpbin.org/get", parameters: ["name": "zhangsan" as AnyObject ,"age": 18 as AnyObject]){
+//            (result,error)->() in
+//            print(result)
+//        }
+//        NetworkTools.sharedTools.request(method: HMRequestMethod.POST, URLString: "http://httpbin.org/post", parameters: ["name": "zhangsan" as AnyObject ,"age": 18 as AnyObject]){
+//            (result,error)->() in
+//            print(result)
+//        }
         // Do any additional setup after loading the view.
     }
 
