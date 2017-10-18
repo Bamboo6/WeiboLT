@@ -11,7 +11,7 @@ import AFNetworking
 
 class NetworkTools: AFHTTPSessionManager {
     
-    public let appkey = "1249136323"
+    public let appKey = "1249136323"
     public let appScret = "b18fb6285bb36dc744d9efaa48a251f9"
     public let redirectUrl = "http://www.baidu.com"
     
@@ -45,7 +45,8 @@ extension NetworkTools{
     // MARK: - OAuth 相关方法
     /// OAuth 授权 URL
     var OAuthURL: NSURL {
-        let urlString = "https://api.weibo.com/oauth2/authorize?client_id=\(appkey)&redirect_url=\(redirectUrl)"
+//        let urlString = "https://api.weibo.com/oauth2/authorize?client_id=\(appKey)&redirect_url=\(redirectUrl)"
+        let urlString = "https://api.weibo.com/oauth2/authorize?client_id=\(appKey)&redirect_uri=\(redirectUrl)"
         return NSURL(string: urlString)!
     }
 }
