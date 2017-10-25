@@ -12,15 +12,20 @@ import AFNetworking
 class NetworkTools: AFHTTPSessionManager {
     
     public let appKey = "1249136323"
-    public let appScret = "b18fb6285bb36dc744d9efaa48a251f9"
+    public let appSecret = "b18fb6285bb36dc744d9efaa48a251f9"
     public let redirectUrl = "http://www.baidu.com"
     
+    typealias HMRequestCallBack = (Any?,URLSessionTask?)->()
+    
+    //单例
     static let sharedTools: NetworkTools = {
-        let tools = NetworkTools(baseURL:nil)
-        tools.responseSerializer.acceptableContentTypes?.insert("text/html")
+        let tools = NetworkTools(baseURL: nil)
+        // 设置反序列化数据格式 - 系统会自动将 OC 框架中的 NSSet 转换成 Set
+        tools.responseSerializer.acceptableContentTypes?.insert("text/plain")
         return tools
     }()
-    typealias HMRequestCallBack = (Any?,URLSessionTask?)->()
+    
+    
 }
 
 extension NetworkTools{
@@ -49,6 +54,32 @@ extension NetworkTools{
         let urlString = "https://api.weibo.com/oauth2/authorize?client_id=\(appKey)&redirect_uri=\(redirectUrl)"
         return NSURL(string: urlString)!
     }
+    
+    /// 加载 AccessToken
+    func loadAccessToken(code: String, finished: @escaping HMRequestCallBack) {
+        
+        let urlString = "https://api.weibo.com/oauth2/access_token"
+        
+        let params = ["client_id": appKey,
+                      "client_secret": appSecret,
+                      "grant_type": "authorization_code",
+                      "code": code,
+                      "redirect_uri": redirectUrl]
+        
+//        request(method: .POST, URLString: urlString, parameters: params as [String : AnyObject], finished: finished)
+        
+        /// 测试返回的数据内容
+                // 1> 设置相应数据格式是二进制的
+                responseSerializer = AFHTTPResponseSerializer()
+        
+                // 2> 发起网络请求
+        post(urlString, parameters: params, success: { (_, result) -> Void in
+                // 将二进制数据转换成字符串
+            let json = NSString(data: (result as! NSData) as Data, encoding:String.Encoding.utf8.rawValue)
+                    print(json)
+                }, failure: nil)
+    }
+    
 }
 
 //HTTP请求方法枚举

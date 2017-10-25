@@ -31,6 +31,8 @@ class OAuthViewController: UIViewController {
         
         /// 设置代理
         webView.delegate = self as! UIWebViewDelegate
+        
+        
     }
     
 
@@ -67,11 +69,11 @@ extension OAuthViewController: UIWebViewDelegate {
     /// - parameter request:        将要加载的请求
     /// - parameter navigationType: 页面跳转的方式
     /// - returns: 返回 false 不加载，返回 true 继续加载
-    func webView(webView: UIWebView, shouldStartLoadWithRequest request:
-        NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    func webView(_ webView: UIWebView, shouldStartLoadWith request:
+        URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         // 目标：如果是百度，就不加载
         // 1. 判断访问的主机是否是 www.baidu.com
-        guard let url = request.url, url.host == "http://www.baidu.com" else {
+        guard let url = request.url, url.host == "www.baidu.com" else {
             print("是www.baidu.com")
             return true
         }
@@ -83,9 +85,29 @@ extension OAuthViewController: UIWebViewDelegate {
         }
         
         // 3. 从 query 字符串中提取 `code=` 后面的授权码
-        let code = query.substring(from:"code=".endIndex)
+//        let code = query.substring(from:"code=".endIndex)
+        let code = query.substring(from: "code=".endIndex)
         print("授权码是 " + code)
+        
+        // 加载accessToken
+        NetworkTools.sharedTools.loadAccessToken(code: code) {
+            
+            (result,error) -> () in
+            // 1>判断错误
+            if error != nil {
+                print("出错了")
+                return
+            }
+            // 2>输出结果
+            print(result)
+            
+            let account = UserAccount(dict: result as! [String:AnyObject])
+            print(account)
+            
+        }
+        
         return false
+        
     }
 }
 
