@@ -85,7 +85,7 @@ extension OAuthViewController: UIWebViewDelegate {
         }
         
         // 3. 从 query 字符串中提取 `code=` 后面的授权码
-///        let code = query.substring(from:"code=".endIndex)
+//        let code = query.substring(from:"code=".endIndex)
         let code = query.substring(from: "code=".endIndex)
         print("授权码是 " + code)
         
