@@ -7,8 +7,6 @@
 //
 //test12
 
-//github test7
-
 import UIKit
 
 class OAuthViewController: UIViewController {
