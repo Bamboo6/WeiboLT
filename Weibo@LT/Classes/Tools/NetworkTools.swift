@@ -31,9 +31,9 @@ class NetworkTools: AFHTTPSessionManager {
 extension NetworkTools{
     func request(method:HMRequestMethod, URLString:String,parameters:[String: AnyObject]?,finished:@escaping HMRequestCallBack){
         let success = {(task:URLSessionTask?,result:Any?)->()
-            in finished(result,nil)}
+            in finished(result,task)}
         let failure = {(task:URLSessionTask?,error:Error?)->()
-            in finished(error,nil)}
+            in finished(error,task)}
         if method == HMRequestMethod.GET{
             get(URLString, parameters: parameters,progress: nil, success: success,failure: failure)
         }
@@ -42,7 +42,12 @@ extension NetworkTools{
         }
         
     }
-    
+    //加载用户信息
+    func loadUserInfo(uid: String, accessToken:String,finished:@escaping HMRequestCallBack) {
+        let urlString = "https://api.weibo.com/2/users/show.json"
+        let params:[String:AnyObject]?=["uid": uid as AnyObject,"access_token":accessToken as AnyObject]
+        request(method: .GET, URLString: urlString, parameters: params as [String : AnyObject]?, finished: finished)
+    }
     
 }
 
@@ -60,15 +65,16 @@ extension NetworkTools{
         
         let urlString = "https://api.weibo.com/oauth2/access_token"
         
-        let params = ["client_id": appKey,
-                      "client_secret": appSecret,
-                      "grant_type": "authorization_code",
-                      "code": code,
-                      "redirect_uri": redirectUrl]
+        let params:[String:AnyObject]?=["client_id": appKey as AnyObject,
+                                        "client_secret": appSecret as AnyObject,
+                                        "grant_type": "authorization_code" as AnyObject,
+                                        "code": code as AnyObject,
+                                        "redirect_uri": redirectUrl as AnyObject]
+        request(method: .POST, URLString: urlString, parameters: params, finished: finished)
         
 //        request(method: .POST, URLString: urlString, parameters: params as [String : AnyObject], finished: finished)
         
-        /// 测试返回的数据内容
+/*        /// 测试返回的数据内容
                 // 1> 设置相应数据格式是二进制的
                 responseSerializer = AFHTTPResponseSerializer()
         
@@ -77,8 +83,9 @@ extension NetworkTools{
                 // 将二进制数据转换成字符串
             let json = NSString(data: (result as! NSData) as Data, encoding:String.Encoding.utf8.rawValue)
                     print(json)
-                }, failure: nil)
+                }, failure: nil)*/
     }
+ 
     
 }
 

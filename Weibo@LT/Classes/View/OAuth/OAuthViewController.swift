@@ -92,23 +92,47 @@ extension OAuthViewController: UIWebViewDelegate {
         
         // 加载accessToken
         NetworkTools.sharedTools.loadAccessToken(code: code) {
-            
-            (result,error) -> () in
+            (result,error) in
             // 1>判断错误
-            if error != nil {
+            if error?.error != nil {
                 print("出错了")
                 return
             }
             // 2>输出结果
-            print(result)
-            
+            print(result!)
+            let test=result as! [String:Any]
+            //print(test["uid"])
             let account = UserAccount(dict: result as! [String:AnyObject])
-            print(account)
+            self.loadUserInfo(account: account)
             
         }
         
         return false
         
+    }
+    private func loadUserInfo(account: UserAccount) {
+        NetworkTools.sharedTools.loadUserInfo(uid: account.uid!, accessToken: account.access_token!){
+            (result,error) in
+            if error?.error != nil {
+                print("加载用户出错了")
+                return
+            }
+                //作了两个判断 1.result一定有内容 2.一定是字典
+                guard let dict = result as? [String:AnyObject] else {
+                    print("格式错误")
+                    return
+                }
+            
+                //dict一定是一个有值的字典
+                /*print(dict["screen_name"])
+                print(dict["avatar_large"])*/
+                account.screen_name = dict["screen_name"] as? String
+                account.avatar_large = dict["avatar_large"] as? String
+                print(account)
+            
+            
+            
+        }
     }
 }
 
