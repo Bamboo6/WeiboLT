@@ -8,7 +8,8 @@
 
 import UIKit
 
-class UserAccount: NSObject {
+class UserAccount: NSObject , NSCoding{
+    
     /// 用于调用access_token，接口获取授权后的access token
     var access_token: String?
     /// 当前授权用户的UID
@@ -46,7 +47,7 @@ class UserAccount: NSObject {
     /// 归档 - 在把当前对象保存到磁盘前，将对象编码成二进制数据
     ///
     /// - parameter aCoder: 编码器
-    func encodeWithCoder(aCoder: NSCoder) {
+    func encode(with aCoder: NSCoder) {
         aCoder.encode(access_token, forKey: "access_token")
         aCoder.encode(expiresDate, forKey: "expiresDate")
         aCoder.encode(uid, forKey: "uid")
@@ -64,5 +65,19 @@ class UserAccount: NSObject {
         uid = aDecoder.decodeObject(forKey: "uid") as? String
         screen_name = aDecoder.decodeObject(forKey: "screen_name") as? String
         avatar_large = aDecoder.decodeObject(forKey: "avatar_large") as? String
+    }
+    
+    // MARK: - 保存当前对象
+    func saveUserAccount() {
+        //保存路径
+        var path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last!
+        /// 归档保存的路径-计算型属性（类似于有返回值的函数，可以让调用的时候，语义会更清晰）
+        path = (path as NSString).appendingPathComponent("account.plist")
+        //实际开发中，一定要确认文件真的保存了！
+        print(path)
+        //归档保存
+        NSKeyedArchiver.archiveRootObject(self, toFile: path)
+            
+        
     }
 }
