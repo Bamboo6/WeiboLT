@@ -15,7 +15,8 @@ class NetworkTools: AFHTTPSessionManager {
     public let appSecret = "b18fb6285bb36dc744d9efaa48a251f9"
     public let redirectUrl = "http://www.baidu.com"
     
-    typealias HMRequestCallBack = (Any?,URLSessionTask?)->()
+//    typealias HMRequestCallBack = (Any?,URLSessionTask?)->()
+    typealias HMRequestCallBack = (Any?,Error?)->()
     
     //单例
     static let sharedTools: NetworkTools = {
@@ -30,10 +31,15 @@ class NetworkTools: AFHTTPSessionManager {
 
 extension NetworkTools{
     func request(method:HMRequestMethod, URLString:String,parameters:[String: AnyObject]?,finished:@escaping HMRequestCallBack){
-        let success = {(task:URLSessionTask?,result:Any?)->()
-            in finished(result,task)}
-        let failure = {(task:URLSessionTask?,error:Error?)->()
-            in finished(error,task)}
+        /*let success = {(task:URLSessionTask?,result:Any?)->()
+            in finished(result,task)}*/
+        let success={(task:URLSessionDataTask?,result:Any?)->()
+            in finished(result,nil)}
+        /*let failure = {(task:URLSessionTask?,error:Error?)->()
+            in finished(error,task)}*/
+        let failure={(task:URLSessionDataTask?,error:Error?)->()
+            in finished(nil,error)}
+        
         if method == HMRequestMethod.GET{
             get(URLString, parameters: parameters,progress: nil, success: success,failure: failure)
         }
@@ -44,9 +50,26 @@ extension NetworkTools{
     }
     //加载用户信息
     func loadUserInfo(uid: String, accessToken:String,finished:@escaping HMRequestCallBack) {
+        // 1. 获取token字典
+        guard var params=tokenDict else {
+            //如果字典为nil，通知调用方token无效
+            finished(nil,NSError(domain:"cn.itcast.error",code:-1001,userInfo:["message":"token为空"]))
+            return
+        }
+        // 2. 处理网络参数
         let urlString = "https://api.weibo.com/2/users/show.json"
-        let params:[String:AnyObject]?=["uid": uid as AnyObject,"access_token":accessToken as AnyObject]
-        request(method: .GET, URLString: urlString, parameters: params as [String : AnyObject]?, finished: finished)
+//        let params:[String:AnyObject]?=["uid": uid as AnyObject,"access_token":accessToken as AnyObject]
+        params["uid"]=uid as AnyObject?
+//        request(method: .GET, URLString: urlString, parameters: params as [String : AnyObject]?, finished: finished)
+        request(method: .GET, URLString: urlString, parameters: params, finished: finished)
+    }
+    //返回token字典
+    public var tokenDict:[String:AnyObject]?{
+        //如果token没有过期，返回account中的token属性
+        if let token=UserAccountViewModel.sharedUserAccount.account?.access_token{
+            return ["access_token":token as AnyObject]
+        }
+        return nil
     }
     
 }

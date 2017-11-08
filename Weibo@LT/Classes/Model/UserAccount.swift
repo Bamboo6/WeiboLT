@@ -59,7 +59,7 @@ class UserAccount: NSObject , NSCoding{
     /// - parameter aDecoder: 解码器
     ///
     /// - returns: 当前对象
-    required init?(coder aDecoder: NSCoder) {
+    required init(coder aDecoder: NSCoder) {
         access_token = aDecoder.decodeObject(forKey: "access_token") as?String
         expiresDate = aDecoder.decodeObject(forKey: "expiresDate") as? NSDate
         uid = aDecoder.decodeObject(forKey: "uid") as? String
@@ -72,7 +72,8 @@ class UserAccount: NSObject , NSCoding{
         //保存路径
         var path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last!
         /// 归档保存的路径-计算型属性（类似于有返回值的函数，可以让调用的时候，语义会更清晰）
-        path = (path as NSString).appendingPathComponent("account.plist")
+//        path = (path as NSString).appendingPathComponent("account.plist")
+        path=(path as NSString).strings(byAppendingPaths: ["account.plist"]).last!
         //实际开发中，一定要确认文件真的保存了！
         print(path)
         //归档保存

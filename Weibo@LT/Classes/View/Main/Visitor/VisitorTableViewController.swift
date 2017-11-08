@@ -11,13 +11,14 @@ import UIKit
 class VisitorTableViewController: UITableViewController {
     
     ///用户登记标记
-    private var userLogon = false
+//    private var userLogon = false
+    private var userLogin = UserAccountViewModel.sharedUserAccount.userLogin
     
     ///访客视图
     var visitorView: VisitorView?
     override func loadView() {
         //根据用户登录情况，决定显示的根视图
-        userLogon ? super.loadView():setupVisitorView()
+        userLogin ? super.loadView():setupVisitorView()
     }
     ///设置访客视图
     private func setupVisitorView(){

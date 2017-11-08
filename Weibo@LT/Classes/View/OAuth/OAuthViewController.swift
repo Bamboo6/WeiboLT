@@ -90,7 +90,7 @@ extension OAuthViewController: UIWebViewDelegate {
         let code = query.substring(from: "code=".endIndex)
         print("授权码是 " + code)
         
-        // 加载accessToken
+        /*// 加载accessToken
         NetworkTools.sharedTools.loadAccessToken(code: code) {
             (result,error) in
             // 1>判断错误
@@ -105,12 +105,25 @@ extension OAuthViewController: UIWebViewDelegate {
             let account = UserAccount(dict: result as! [String:AnyObject])
             self.loadUserInfo(account: account)
             
+        }*/
+        
+        UserAccountViewModel.sharedUserAccount.loadAccessToken(code: code){
+            (isSuccessed)->() in
+            if isSuccessed
+            {
+                print("成功了")
+                print(UserAccountViewModel.sharedUserAccount.account)
+            }
+            else
+            {
+                print("失败了")
+            }
         }
         
         return false
         
     }
-    private func loadUserInfo(account: UserAccount) {
+    /*private func loadUserInfo(account: UserAccount) {
         NetworkTools.sharedTools.loadUserInfo(uid: account.uid!, accessToken: account.access_token!){
             (result,error) in
             if error?.error != nil {
@@ -130,9 +143,7 @@ extension OAuthViewController: UIWebViewDelegate {
                 account.avatar_large = dict["avatar_large"] as? String
                 print(account)
             
-            
-            
         }
-    }
+    }*/
 }
 
