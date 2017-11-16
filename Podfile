@@ -20,3 +20,5 @@ target 'Weibo@LT' do
 end
 
 pod 'AFNetworking'
+
+pod ‘SnapKit’,’~>3.0.0’
