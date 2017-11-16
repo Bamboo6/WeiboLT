@@ -23,6 +23,9 @@
 		69074B1E1F8DBDC700F01EF0 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69074B1D1F8DBDC700F01EF0 /* ProfileTableViewController.swift */; };
 		69074B231F8DC28C00F01EF0 /* VisitorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69074B221F8DC28C00F01EF0 /* VisitorView.swift */; };
 		69074B271F8DC35D00F01EF0 /* VisitorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69074B261F8DC35D00F01EF0 /* VisitorTableViewController.swift */; };
+		69198CC61FBD3A4E00BAB626 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69198CC51FBD3A4E00BAB626 /* WelcomeViewController.swift */; };
+		69198CC81FBD3BD800BAB626 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69198CC71FBD3BD800BAB626 /* UIImageView+Extension.swift */; };
+		69198CCA1FBD3FBB00BAB626 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69198CC91FBD3FBB00BAB626 /* UILabel+Extension.swift */; };
 		694536241F8DCB9B00D5FACD /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694536231F8DCB2A00D5FACD /* UIButton+Extension.swift */; };
 		695FB1F81FAACBBE00A2A217 /* UserAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695FB1F71FAACBBE00A2A217 /* UserAccountViewModel.swift */; };
 		6962F9BE1FB3FBC5006F28CD /* NewFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6962F9BD1FB3FBC5006F28CD /* NewFeatureViewController.swift */; };
@@ -73,6 +76,9 @@
 		69074B1D1F8DBDC700F01EF0 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		69074B221F8DC28C00F01EF0 /* VisitorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitorView.swift; sourceTree = "<group>"; };
 		69074B261F8DC35D00F01EF0 /* VisitorTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitorTableViewController.swift; sourceTree = "<group>"; };
+		69198CC51FBD3A4E00BAB626 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		69198CC71FBD3BD800BAB626 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		69198CC91FBD3FBB00BAB626 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		694536231F8DCB2A00D5FACD /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		695FB1F71FAACBBE00A2A217 /* UserAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountViewModel.swift; sourceTree = "<group>"; };
 		6962F9BD1FB3FBC5006F28CD /* NewFeatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFeatureViewController.swift; sourceTree = "<group>"; };
@@ -294,6 +300,8 @@
 			isa = PBXGroup;
 			children = (
 				694536231F8DCB2A00D5FACD /* UIButton+Extension.swift */,
+				69198CC71FBD3BD800BAB626 /* UIImageView+Extension.swift */,
+				69198CC91FBD3FBB00BAB626 /* UILabel+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -302,6 +310,7 @@
 			isa = PBXGroup;
 			children = (
 				6962F9BD1FB3FBC5006F28CD /* NewFeatureViewController.swift */,
+				69198CC51FBD3A4E00BAB626 /* WelcomeViewController.swift */,
 			);
 			path = NewFeature;
 			sourceTree = "<group>";
@@ -505,11 +514,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Weibo@LT/Pods-Weibo@LT-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -621,12 +632,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				69074B1E1F8DBDC700F01EF0 /* ProfileTableViewController.swift in Sources */,
+				69198CC61FBD3A4E00BAB626 /* WelcomeViewController.swift in Sources */,
 				69941DF51F8F17F100326914 /* NetworkTools.swift in Sources */,
 				69074B161F8DBD5A00F01EF0 /* MainViewController.swift in Sources */,
 				69074ADF1F8DBA5600F01EF0 /* ViewController.swift in Sources */,
 				69CB42891F96F3A300259FE2 /* OAuthViewController.swift in Sources */,
 				69BF0A641FA03B0800AF6A0E /* UserAccount.swift in Sources */,
 				694536241F8DCB9B00D5FACD /* UIButton+Extension.swift in Sources */,
+				69198CCA1FBD3FBB00BAB626 /* UILabel+Extension.swift in Sources */,
 				695FB1F81FAACBBE00A2A217 /* UserAccountViewModel.swift in Sources */,
 				69074B181F8DBD9500F01EF0 /* DiscoverTableViewController.swift in Sources */,
 				69074ADD1F8DBA5600F01EF0 /* AppDelegate.swift in Sources */,
@@ -634,6 +647,7 @@
 				69074B271F8DC35D00F01EF0 /* VisitorTableViewController.swift in Sources */,
 				69074B1C1F8DBDB300F01EF0 /* MessageTableViewController.swift in Sources */,
 				6962F9BE1FB3FBC5006F28CD /* NewFeatureViewController.swift in Sources */,
+				69198CC81FBD3BD800BAB626 /* UIImageView+Extension.swift in Sources */,
 				69074B1A1F8DBDA300F01EF0 /* HomeTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

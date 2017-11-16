@@ -22,3 +22,5 @@ end
 pod 'AFNetworking'
 
 pod ‘SnapKit’,’~>3.0.0’
+
+pod ‘SDWebImage’

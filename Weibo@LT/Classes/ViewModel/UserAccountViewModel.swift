@@ -123,4 +123,9 @@ extension UserAccountViewModel {
         return nil
     }
     
+    //用户头像URL
+    var avatarUrl: NSURL{
+        return NSURL(string: account?.avatar_large ?? "")!
+    }
+    
 }
