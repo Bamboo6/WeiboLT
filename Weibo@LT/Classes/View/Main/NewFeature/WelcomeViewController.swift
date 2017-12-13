@@ -22,7 +22,7 @@ class WelcomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //异步加载用户头像
-        iconView.sd_setImage(with: UserAccountViewModel.sharedUserAccount.avatarUrl as URL, placeholderImage: UIImage(named: "avatar_default_big"))
+//        iconView.sd_setImage(with: UserAccountViewModel.sharedUserAccount.avatarUrl as URL, placeholderImage: UIImage(named: "avatar_default_big"))
         // Do any additional setup after loading the view.
     }
     
@@ -67,6 +67,8 @@ class WelcomeViewController: UIViewController {
             UIView.animate(withDuration: 0.8, animations: {
                 self.welcomeLabel.alpha = 1
             }, completion: { (_) in
+                //发送通知
+                NotificationCenter.default.post (name: NSNotification.Name(rawValue: WBSwitchRootViewControllerNotification), object: nil)
             })
         }
         

@@ -9,6 +9,7 @@
 import Foundation
 
 class UserAccountViewModel {
+    
     /// 用户模型
     var account: UserAccount?
     

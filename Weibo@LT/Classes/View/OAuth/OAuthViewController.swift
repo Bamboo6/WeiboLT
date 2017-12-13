@@ -109,13 +109,14 @@ extension OAuthViewController: UIWebViewDelegate {
         
         UserAccountViewModel.sharedUserAccount.loadAccessToken(code: code){
             (isSuccessed)->() in
-            if isSuccessed
-            {
+            if isSuccessed {
                 print("成功了")
                 print(UserAccountViewModel.sharedUserAccount.account)
-            }
-            else
-            {
+                //用户登录成功，则退出当前控制器，并发送切换根控制器的通知
+                self.dismiss(animated: false) {
+                    NotificationCenter.default.post (name: NSNotification.Name(rawValue: WBSwitchRootViewControllerNotification), object: "welcome")
+                }
+            } else {
                 print("失败了")
             }
         }
