@@ -16,13 +16,14 @@ class WelcomeViewController: UIViewController {
     override func loadView() {
         //直接使用背景图像作为根视图，不用关心图像的缩放问题
         view = backImageView
+        setupUI() // 加载欢迎界面头像、文字
     }
     
     // 视图加载完成之后的后续处理，通常用来设置数据
     override func viewDidLoad() {
         super.viewDidLoad()
         //异步加载用户头像
-//        iconView.sd_setImage(with: UserAccountViewModel.sharedUserAccount.avatarUrl as URL, placeholderImage: UIImage(named: "avatar_default_big"))
+        iconView.sd_setImage(with: UserAccountViewModel.sharedUserAccount.avatarUrl as URL, placeholderImage: UIImage(named: "avatar_default_big"))
         // Do any additional setup after loading the view.
     }
     
@@ -48,13 +49,14 @@ class WelcomeViewController: UIViewController {
     }
     
     // 视图已经显示，通常可以动画／键盘处理
-    override func viewDidDisappear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         // 1.更新约束 –> 改变位置
         // snp_updateContraints更新已经设置过的约束
         iconView.snp.updateConstraints { (make) in
-            make.bottom.equalTo(view.snp.bottom).offset(-view.bounds.height + 200)
+            make.bottom.equalTo(view.snp.bottom)
+            .offset(-view.bounds.height + 200)
         }
         
         // 2.动画
@@ -73,6 +75,8 @@ class WelcomeViewController: UIViewController {
         }
         
     }
+    
+    
 
     /*
     // MARK: - Navigation
