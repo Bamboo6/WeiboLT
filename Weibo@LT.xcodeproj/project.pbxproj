@@ -27,10 +27,14 @@
 		69198CC81FBD3BD800BAB626 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69198CC71FBD3BD800BAB626 /* UIImageView+Extension.swift */; };
 		69198CCA1FBD3FBB00BAB626 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69198CC91FBD3FBB00BAB626 /* UILabel+Extension.swift */; };
 		694536241F8DCB9B00D5FACD /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694536231F8DCB2A00D5FACD /* UIButton+Extension.swift */; };
+		69535FC72064845D00C329A8 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69535FC62064845D00C329A8 /* Status.swift */; };
 		695FB1F81FAACBBE00A2A217 /* UserAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695FB1F71FAACBBE00A2A217 /* UserAccountViewModel.swift */; };
 		6962F9BE1FB3FBC5006F28CD /* NewFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6962F9BD1FB3FBC5006F28CD /* NewFeatureViewController.swift */; };
+		697C3D9B2086CED600FD9867 /* StatusListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697C3D9A2086CED600FD9867 /* StatusListViewModel.swift */; };
 		69941DF51F8F17F100326914 /* NetworkTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69941DF41F8F17F100326914 /* NetworkTools.swift */; };
 		69BB73DE1FE0D03300A48CC7 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BB73DD1FE0D03300A48CC7 /* Common.swift */; };
+		69BCA9DE208995D1004E81A5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BCA9DD208995D1004E81A5 /* User.swift */; };
+		69BCA9E020899795004E81A5 /* StatusViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BCA9DF20899795004E81A5 /* StatusViewModel.swift */; };
 		69BF0A641FA03B0800AF6A0E /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BF0A631FA03B0800AF6A0E /* UserAccount.swift */; };
 		69CB42891F96F3A300259FE2 /* OAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CB42881F96F3A300259FE2 /* OAuthViewController.swift */; };
 		9C610124519F0870A67170FA /* Pods_Weibo_LTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFB92C594300DA80302013E5 /* Pods_Weibo_LTTests.framework */; };
@@ -81,10 +85,14 @@
 		69198CC71FBD3BD800BAB626 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		69198CC91FBD3FBB00BAB626 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		694536231F8DCB2A00D5FACD /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		69535FC62064845D00C329A8 /* Status.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
 		695FB1F71FAACBBE00A2A217 /* UserAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountViewModel.swift; sourceTree = "<group>"; };
 		6962F9BD1FB3FBC5006F28CD /* NewFeatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFeatureViewController.swift; sourceTree = "<group>"; };
+		697C3D9A2086CED600FD9867 /* StatusListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusListViewModel.swift; sourceTree = "<group>"; };
 		69941DF41F8F17F100326914 /* NetworkTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTools.swift; sourceTree = "<group>"; };
 		69BB73DD1FE0D03300A48CC7 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		69BCA9DD208995D1004E81A5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		69BCA9DF20899795004E81A5 /* StatusViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewModel.swift; sourceTree = "<group>"; };
 		69BF0A631FA03B0800AF6A0E /* UserAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
 		69CB42881F96F3A300259FE2 /* OAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthViewController.swift; sourceTree = "<group>"; };
 		773121D79D6758C59D80E89D /* Pods-Weibo@LT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weibo@LT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Weibo@LT/Pods-Weibo@LT.debug.xcconfig"; sourceTree = "<group>"; };
@@ -213,6 +221,8 @@
 			isa = PBXGroup;
 			children = (
 				69BF0A631FA03B0800AF6A0E /* UserAccount.swift */,
+				69535FC62064845D00C329A8 /* Status.swift */,
+				69BCA9DD208995D1004E81A5 /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -286,6 +296,8 @@
 			isa = PBXGroup;
 			children = (
 				695FB1F71FAACBBE00A2A217 /* UserAccountViewModel.swift */,
+				697C3D9A2086CED600FD9867 /* StatusListViewModel.swift */,
+				69BCA9DF20899795004E81A5 /* StatusViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -348,7 +360,6 @@
 				69074AD61F8DBA5600F01EF0 /* Frameworks */,
 				69074AD71F8DBA5600F01EF0 /* Resources */,
 				266245E06AEDEB0E24F48A7F /* [CP] Embed Pods Frameworks */,
-				78D6058822CD7A51AA3C439C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -367,8 +378,6 @@
 				69074AE91F8DBA5600F01EF0 /* Sources */,
 				69074AEA1F8DBA5600F01EF0 /* Frameworks */,
 				69074AEB1F8DBA5600F01EF0 /* Resources */,
-				E804F645F049C93022400236 /* [CP] Embed Pods Frameworks */,
-				3CBC2E7AD181AE42C726D0B8 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -388,8 +397,6 @@
 				69074AF41F8DBA5600F01EF0 /* Sources */,
 				69074AF51F8DBA5600F01EF0 /* Frameworks */,
 				69074AF61F8DBA5600F01EF0 /* Resources */,
-				67044EEF4BE49FDEC9B4633C /* [CP] Embed Pods Frameworks */,
-				21DB74F7024E6184C5372A01 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -494,21 +501,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		21DB74F7024E6184C5372A01 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Weibo@LTUITests/Pods-Weibo@LTUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		266245E06AEDEB0E24F48A7F /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -518,12 +510,14 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Weibo@LT/Pods-Weibo@LT-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -549,51 +543,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3CBC2E7AD181AE42C726D0B8 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Weibo@LTTests/Pods-Weibo@LTTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		67044EEF4BE49FDEC9B4633C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Weibo@LTUITests/Pods-Weibo@LTUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		78D6058822CD7A51AA3C439C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Weibo@LT/Pods-Weibo@LT-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		ABA224E9BB7AF05E976CD356 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -610,21 +559,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E804F645F049C93022400236 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Weibo@LTTests/Pods-Weibo@LTTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -644,10 +578,14 @@
 				694536241F8DCB9B00D5FACD /* UIButton+Extension.swift in Sources */,
 				69198CCA1FBD3FBB00BAB626 /* UILabel+Extension.swift in Sources */,
 				695FB1F81FAACBBE00A2A217 /* UserAccountViewModel.swift in Sources */,
+				69BCA9DE208995D1004E81A5 /* User.swift in Sources */,
 				69074B181F8DBD9500F01EF0 /* DiscoverTableViewController.swift in Sources */,
+				69535FC72064845D00C329A8 /* Status.swift in Sources */,
 				69074ADD1F8DBA5600F01EF0 /* AppDelegate.swift in Sources */,
 				69074B231F8DC28C00F01EF0 /* VisitorView.swift in Sources */,
+				697C3D9B2086CED600FD9867 /* StatusListViewModel.swift in Sources */,
 				69074B271F8DC35D00F01EF0 /* VisitorTableViewController.swift in Sources */,
+				69BCA9E020899795004E81A5 /* StatusViewModel.swift in Sources */,
 				69074B1C1F8DBDB300F01EF0 /* MessageTableViewController.swift in Sources */,
 				69BB73DE1FE0D03300A48CC7 /* Common.swift in Sources */,
 				6962F9BE1FB3FBC5006F28CD /* NewFeatureViewController.swift in Sources */,

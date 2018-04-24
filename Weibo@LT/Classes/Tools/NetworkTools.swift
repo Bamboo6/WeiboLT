@@ -112,7 +112,35 @@ extension NetworkTools{
     
 }
 
-//HTTP请求方法枚举
+
+// MARK: - 微博数据相关方法
+extension NetworkTools {
+    
+    /// 加载微博数据
+    ///
+    /// - parameter since_id: 若指定此参数，则返回ID比since_id大的微博，默认为0。
+    /// - parameter max_id: 若指定此参数，则返回ID小于或等于`max_id`的微博，默认为0
+    /// - parameter finished: 完成回调
+    func loadStatus(finished: @escaping HMRequestCallBack) {
+        // 1. 获取 token 字典
+        guard let params = tokenDict else {
+            // 如果字典为 nil ，通知调用方，token 无效
+            finished(nil, NSError(domain: "cn.itcast.error",
+                code: -1001, userInfo: ["message": "token 为空"]))
+            return
+        }
+        
+        // 2. 准备网络参数
+        let urlString = "https://api.weibo.com/2/statuses/home_timeline.json"
+        
+        // 3. 发起网络请求
+        request(method: .GET, URLString: urlString, parameters: params, finished: finished)
+    }
+    
+}
+
+
+// HTTP请求方法枚举
 enum HMRequestMethod: String {
     case GET = "GET"
     case POST = "POST"

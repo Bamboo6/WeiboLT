@@ -21,6 +21,8 @@ end
 
 pod 'AFNetworking'
 
-pod ‘SnapKit’,’~>3.0.0’
+pod 'SnapKit','~>3.0.0'
 
-pod ‘SDWebImage’
+pod 'SDWebImage'
+
+pod 'SVProgressHUD'

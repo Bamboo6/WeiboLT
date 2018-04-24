@@ -7,12 +7,26 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class HomeTableViewController: VisitorTableViewController {
+    
+    /// 微博数据数组
+//    var dataList: [Status]?
+    
+    private let StatusCellNormalId = "StatusCellNormalId"//微博cell（表格单元）的可重用表示符
+    
+    private lazy var listViewModel=StatusListViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        visitorView?.setupInfo(imageName: nil, title: "关注一些人，回这里看看有什么惊喜")
+        //判断是否登陆
+        if !UserAccountViewModel.sharedUserAccount.userLogin{
+            visitorView?.setupInfo(imageName: nil, title: "关注一些人，回这里看看有什么惊喜")
+            return
+        }
+        loadData()
+        prepareTableView()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -21,32 +35,33 @@ class HomeTableViewController: VisitorTableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: - Table view data source
+    // MARK: - Table view dataource
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+//        return 0
+        return listViewModel.statusList.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
         // Configure the cell...
+        let cell = tableView.dequeueReusableCell(withIdentifier: StatusCellNormalId, for: indexPath)
+                // 测试微博信息内容
+        //        cell.textLabel?.text = dataList![indexPath.row].text
+//                cell.textLabel?.text = listViewModel.statusList[indexPath.row].text
+        cell.textLabel?.text=listViewModel.statusList[indexPath.row].status.user?.screen_name
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -92,5 +107,73 @@ class HomeTableViewController: VisitorTableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    /// 加载数据
+    public func loadData() {
+        //        NetworkTools.sharedTools.loadStatus { (result, error) -> () in
+        //            if error != nil {
+        //                print("出错了")
+        //                return
+        //            }
+        //            print(result)
+        //
+        //        }
+        //        // 判断 result 的数据结构是否正确
+        //        guard let array = result?["statuses"] as? [[String: AnyObject]]
+        //            else {
+        //                print("数据格式错误")
+        //                return
+        //        }
+        //        print(array)
+        //
+        //        // 遍历字典的数组，字典转模型
+        //        // 1. 可变的数组
+        //        var dataList = [Status]()
+        //        // 2. 遍历数组
+        //        for dict in array {
+        //            dataList.append(Status(dict: dict))
+        //        }
+        //        // 3. 测试
+        //        print(dataList)
+        //        self.dataList = dataList
+        //        // 刷新数据
+        //        self.tableView.reloadData()
+        
+        listViewModel.loadStatus{ (isSuccessed)->() in
+            if !isSuccessed {
+                SVProgressHUD.showInfo(withStatus: "加载数据错误，请稍后再试")
+                return
+            }
+            print(self.listViewModel.statusList)
+            // 刷新数据
+            self.tableView.reloadData()
+        }
+        
+    }
+    
+    /// 准备表格
+    public func prepareTableView() {
+        // 注册可重用 cell
+        tableView.register(UITableViewCell.self,forCellReuseIdentifier: StatusCellNormalId)
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
 
+}
+
+extension HomeTableViewController{
+//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+////        return dataList?.count ?? 0
+//        return listViewModel.statusList.count
+//    }
+//    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
+//        let cell = tableView.dequeueReusableCell(withIdentifier: StatusCellNormalId, forIndexPath: indexPath) as! StatusCell
+//        // 测试微博信息内容
+////        cell.textLabel?.text = dataList![indexPath.row].text
+//        cell.textLabel?.text = listViewModel.statusList[indexPath.row].text
+//        return cell
+//    }
 }
