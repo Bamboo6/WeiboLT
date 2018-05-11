@@ -131,7 +131,7 @@ private class NewFeatureCell: UICollectionViewCell {
     private lazy var iconView: UIImageView = UIImageView()
     
     /// 开始体验按钮
-    private lazy var startButton: UIButton = UIButton(title: "开始体验", color: UIColor.white, imageName: "new_feature_finish_button")
+    private lazy var startButton: UIButton = UIButton(title: "开始体验", color: UIColor.white, backImageName: "new_feature_finish_button")
     
     /// 点击开始体验按钮
     @objc private func clickStartButton() {

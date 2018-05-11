@@ -105,9 +105,18 @@ static const CGFloat kDestSeemOverlap = 2.0f;   // the numbers of pixels to over
         return nil;
     }
     
+    SDImageFormat format = [NSData sd_imageFormatForImageData:data];
+    if (format == SDImageFormatGIF) {
+        // static single GIF need to be created animated for `FLAnimatedImage` logic
+        // GIF does not support EXIF image orientation
+        image = [UIImage animatedImageWithImages:@[image] duration:image.duration];
+        return image;
+    }
     UIImageOrientation orientation = [[self class] sd_imageOrientationFromImageData:data];
     if (orientation != UIImageOrientationUp) {
-        image = [[UIImage alloc] initWithCGImage:image.CGImage scale:image.scale orientation:orientation];
+        image = [UIImage imageWithCGImage:image.CGImage
+                                    scale:image.scale
+                              orientation:orientation];
     }
     
     return image;
@@ -173,7 +182,7 @@ static const CGFloat kDestSeemOverlap = 2.0f;   // the numbers of pixels to over
         
         if (partialImageRef) {
 #if SD_UIKIT || SD_WATCH
-            image = [[UIImage alloc] initWithCGImage:partialImageRef scale:1 orientation:_orientation];
+            image = [UIImage imageWithCGImage:partialImageRef scale:1 orientation:_orientation];
 #elif SD_MAC
             image = [[UIImage alloc] initWithCGImage:partialImageRef size:NSZeroSize];
 #endif
@@ -258,7 +267,10 @@ static const CGFloat kDestSeemOverlap = 2.0f;   // the numbers of pixels to over
         // Draw the image into the context and retrieve the new bitmap image without alpha
         CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
         CGImageRef imageRefWithoutAlpha = CGBitmapContextCreateImage(context);
-        UIImage *imageWithoutAlpha = [[UIImage alloc] initWithCGImage:imageRefWithoutAlpha scale:image.scale orientation:image.imageOrientation];
+        UIImage *imageWithoutAlpha = [UIImage imageWithCGImage:imageRefWithoutAlpha
+                                                         scale:image.scale
+                                                   orientation:image.imageOrientation];
+        
         CGContextRelease(context);
         CGImageRelease(imageRefWithoutAlpha);
         
@@ -373,7 +385,7 @@ static const CGFloat kDestSeemOverlap = 2.0f;   // the numbers of pixels to over
         if (destImageRef == NULL) {
             return image;
         }
-        UIImage *destImage = [[UIImage alloc] initWithCGImage:destImageRef scale:image.scale orientation:image.imageOrientation];
+        UIImage *destImage = [UIImage imageWithCGImage:destImageRef scale:image.scale orientation:image.imageOrientation];
         CGImageRelease(destImageRef);
         if (destImage == nil) {
             return image;
@@ -468,8 +480,6 @@ static const CGFloat kDestSeemOverlap = 2.0f;   // the numbers of pixels to over
     static BOOL canDecode = NO;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wunguarded-availability"
 #if TARGET_OS_SIMULATOR || SD_WATCH
         canDecode = NO;
 #elif SD_MAC
@@ -489,7 +499,6 @@ static const CGFloat kDestSeemOverlap = 2.0f;   // the numbers of pixels to over
             canDecode = NO;
         }
 #endif
-#pragma clang diagnostic pop
     });
     return canDecode;
 }

@@ -20,10 +20,13 @@ extension UILabel {
     convenience init(title: String, fontSize: CGFloat = 14,
                      color: UIColor = UIColor.darkGray, screenInset: CGFloat = 0) {
         self.init()
+        
         text = title
         textColor = color
         font = UIFont.systemFont(ofSize: fontSize)
+        
         numberOfLines = 0
+        
         if screenInset == 0 {
             textAlignment = .center
         } else {
@@ -31,6 +34,7 @@ extension UILabel {
             preferredMaxLayoutWidth = UIScreen.main.bounds.width - 2 * screenInset
             textAlignment = .left
         }
+        
         sizeToFit()
     }
 }

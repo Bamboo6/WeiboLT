@@ -53,12 +53,13 @@ class HomeTableViewController: VisitorTableViewController {
 //        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
         // Configure the cell...
-        let cell = tableView.dequeueReusableCell(withIdentifier: StatusCellNormalId, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: StatusCellNormalId, for: indexPath) as! StatusCell
                 // 测试微博信息内容
         //        cell.textLabel?.text = dataList![indexPath.row].text
 //                cell.textLabel?.text = listViewModel.statusList[indexPath.row].text
-        cell.textLabel?.text=listViewModel.statusList[indexPath.row].status.user?.screen_name
-
+//        cell.textLabel?.text=listViewModel.statusList[indexPath.row].status.user?.screen_name
+        cell.viewModel = listViewModel.statusList[indexPath.row]
+        
         return cell
     }
     
@@ -154,7 +155,11 @@ class HomeTableViewController: VisitorTableViewController {
     /// 准备表格
     public func prepareTableView() {
         // 注册可重用 cell
-        tableView.register(UITableViewCell.self,forCellReuseIdentifier: StatusCellNormalId)
+        tableView.register(StatusCell.self,forCellReuseIdentifier: StatusCellNormalId)
+        // 测试行高
+        tableView.rowHeight = 200
+        // 取消分割线
+        tableView.separatorStyle = .none
     }
     
     override func didReceiveMemoryWarning() {

@@ -19,10 +19,11 @@ target 'Weibo@LT' do
 
 end
 
-pod 'AFNetworking'
+pod 'AFNetworking','~>3.1.0'
 
 pod 'SnapKit','~>3.0.0'
 
-pod 'SDWebImage'
+pod 'SDWebImage','~>4.2.2'
 
 pod 'SVProgressHUD'
+

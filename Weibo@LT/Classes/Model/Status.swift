@@ -16,7 +16,7 @@ class Status: NSObject {
     /// 微博来源
     var source: String?
     //用户模型
-    var user:User?
+    var user: User?
     
     init(dict: [String: AnyObject]){
         super.init()
@@ -38,7 +38,7 @@ class Status: NSObject {
         {
             if let dict = value as? [String:AnyObject]
             {
-                user=User(dict:dict) // 字典转换成模型
+                user = User(dict:dict) // 字典转换成模型
             }
             return
         }
