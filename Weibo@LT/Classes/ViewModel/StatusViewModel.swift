@@ -9,13 +9,47 @@
 import Foundation
 import UIKit
 
-class StatusViewModel
-{
+class StatusViewModel: CustomStringConvertible {
+    
+    /// 行高
+    lazy var rowHeight: CGFloat = {
+        // print("计算缓存行高 \(self.status.text)")
+//        var cell: StatusCell
+        
+        // 实例化 cell
+        let cell = StatusCell(style: .default, reuseIdentifier: StatusCellNormalId)
+        
+        // 返回行高
+        return cell.rowHeight(vm: self)
+    }()
+    
+    /// 缩略图URL数组 - 存储型属性 !!!
+    var thumbnailUrls: [NSURL]?
+    
+    /// 描述信息
+    var description: String {
+        return status.description + "配图数组 \(thumbnailUrls ?? ([] as NSArray) as! [NSURL])"
+        //        return status.description
+    }
+    
     /// 微博的模型
     var status: Status
-    init(status:Status)
-    {
-        self.status=status
+    
+    init(status:Status){
+        self.status = status
+        
+        // 根据模型，来生成缩略图的数组
+        if (status.pic_urls?.count)! > 0 {
+            // 创建缩略图数组
+            thumbnailUrls = [NSURL]()
+            // 遍历字典数组 - 数组如果是可选的，不允许遍历，原因：数组是通过下标来检索数据
+            for dict in status.pic_urls! {
+                // 因为字典是按照 key 来取值，如果 key 错误，会返回 nil
+                let url = NSURL(string: dict["thumbnail_pic"]!)
+                // 相信服务器返回的 url 字符串一定能够生成
+                thumbnailUrls?.append(url!)
+            }
+        }
     }
     
     /// 用户头像 URL
@@ -49,6 +83,7 @@ class StatusViewModel
         }
     }
     
-    
 }
+
+
 

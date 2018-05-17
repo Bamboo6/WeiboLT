@@ -9,6 +9,10 @@
 import UIKit
 
 class StatusCellTopView: UIView {
+    
+    let StatusCellMargin:CGFloat=12 //微博cell中控件的间距数值
+    let StatusCellIconWidth:CGFloat=35 //微博头像的宽度
+    
     // MAKR: - 构造函数
     override init(frame: CGRect) {
         super.init(frame: frame)

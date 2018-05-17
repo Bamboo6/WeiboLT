@@ -9,14 +9,14 @@
 import UIKit
 import SVProgressHUD
 
+let StatusCellNormalId = "StatusCellNormalId"//微博cell（表格单元）的可重用表示符
+
 class HomeTableViewController: VisitorTableViewController {
     
     /// 微博数据数组
 //    var dataList: [Status]?
     
-    private let StatusCellNormalId = "StatusCellNormalId"//微博cell（表格单元）的可重用表示符
-    
-    private lazy var listViewModel=StatusListViewModel()
+    public lazy var listViewModel=StatusListViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +62,8 @@ class HomeTableViewController: VisitorTableViewController {
         
         return cell
     }
+    
+    
     
 
     /*
@@ -160,6 +162,9 @@ class HomeTableViewController: VisitorTableViewController {
         tableView.rowHeight = 200
         // 取消分割线
         tableView.separatorStyle = .none
+        // 自动计算行高 - 需要一个自上而下的自动布局的控件，指定一个向下的约束
+        tableView.estimatedRowHeight = 400
+        tableView.rowHeight = 400 //UITableViewAutomaticDimension
     }
     
     override func didReceiveMemoryWarning() {
@@ -181,4 +186,13 @@ extension HomeTableViewController{
 //        cell.textLabel?.text = listViewModel.statusList[indexPath.row].text
 //        return cell
 //    }
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        // 1. 获得模型
+//        let vm=listViewModel.statusList[indexPath.row]
+//        // 2. 实例化 cell
+//        let cell=StatusCell(style: .default, reuseIdentifier: StatusCellNormalId)
+//        // 3. 获得模型
+//        return cell.rowHeight(vm: vm)
+        return listViewModel.statusList[indexPath.row].rowHeight
+    }
 }

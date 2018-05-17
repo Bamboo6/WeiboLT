@@ -15,8 +15,13 @@ class Status: NSObject {
     var text: String?
     /// 微博来源
     var source: String?
+    
+    var created_at: String?
     //用户模型
     var user: User?
+    
+    /// 缩略图配图数组 key: thumbnail_pic
+    var pic_urls: [[String: String]]?
     
     init(dict: [String: AnyObject]){
         super.init()
@@ -28,7 +33,7 @@ class Status: NSObject {
         
     }
     override var description: String {
-        let keys = ["id","text","created_at","source","user"]
+        let keys = ["id","text","created_at","source","user","pic_urls"]
         return dictionaryWithValues(forKeys: keys).description
     }
     override func setValue(_ value: Any?, forKey key: String) {

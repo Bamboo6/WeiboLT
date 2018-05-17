@@ -20,6 +20,17 @@ class StatusCell: UITableViewCell {
         didSet{
             topView.viewModel = viewModel
             contentLabel.text = viewModel?.status.text
+            // 测试动态修改行高
+            pictureView.snp.updateConstraints { (make) -> Void in
+                make.height.equalTo(Int(arc4random()) % 4 * 90)
+            }
+            // 设置配图视图 － 设置视图模型之后，配图视图有能力计算大小
+            pictureView.viewModel = viewModel
+            pictureView.snp.updateConstraints { (make) -> Void in
+                make.height.equalTo(pictureView.bounds.height)
+                // 直接设置宽度数值
+                make.width.equalTo(pictureView.bounds.width)
+            }
         }
     }
     
@@ -47,6 +58,9 @@ class StatusCell: UITableViewCell {
     
     /// 底部视图
     lazy var bottomView: StatusCellBottomView = StatusCellBottomView()
+    
+    /// 配图视图
+    public lazy var pictureView: StatusPictureView = StatusPictureView()
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -63,12 +77,12 @@ class StatusCell: UITableViewCell {
 
 // MARK: - 设置界面
 extension StatusCell {
-    func setupUI() {
+    public func setupUI() {
         // 1. 添加控件
         contentView.addSubview(topView)
         contentView.addSubview(contentLabel)
         contentView.addSubview(bottomView)
-//        contentView.addSubview(pictureView)
+        contentView.addSubview(pictureView)
         
         // 2. 自动布局
         // 1> 顶部视图
@@ -85,18 +99,40 @@ extension StatusCell {
             make.left.equalTo(contentView.snp.left).offset(StatusCellMargin)
         }
         
+        // 配图视图
+        pictureView.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(contentLabel.snp.bottom).offset(StatusCellMargin)
+            make.left.equalTo(contentLabel.snp.left)
+            make.width.equalTo(300)
+            make.height.equalTo(90)
+        }
+        
         // 3> 底部视图
         bottomView.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(contentLabel.snp.bottom).offset(StatusCellMargin)
+            make.top.equalTo(pictureView.snp.bottom).offset(StatusCellMargin)
             make.left.equalTo(contentView.snp.left)
             make.right.equalTo(contentView.snp.right)
             make.height.equalTo(44)
             
             // 指定向下的约束
-             make.bottom.equalTo(contentView.snp.bottom)
+//             make.bottom.equalTo(contentView.snp.bottom)
         }
         
         // 3. 设置代理
 //        contentLabel.labelDelegate = self
+    }
+    
+    /// 根据指定的视图模型计算行高
+    /// - parameter vm: 视图模型
+    /// - returns: 返回视图模型对应的行高
+    public func rowHeight(vm: StatusViewModel) -> CGFloat {
+        // 1. 记录视图模型 -> 会调用上面的 didSet 设置内容以及更新`约束`
+        viewModel = vm
+        
+        // 2. 强制更新所有约束 -> 所有控件的frame都会被计算正确
+        contentView.layoutIfNeeded()
+        
+        // 3. 返回底部视图的最大高度
+        return bottomView.frame.maxY
     }
 }
