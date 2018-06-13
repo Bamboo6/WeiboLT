@@ -33,7 +33,9 @@
 		6957870020ABCF700050DA1E /* StatusPictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695786FF20ABCF700050DA1E /* StatusPictureView.swift */; };
 		695FB1F81FAACBBE00A2A217 /* UserAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 695FB1F71FAACBBE00A2A217 /* UserAccountViewModel.swift */; };
 		6962F9BE1FB3FBC5006F28CD /* NewFeatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6962F9BD1FB3FBC5006F28CD /* NewFeatureViewController.swift */; };
+		69651C0620C0ED1F002BEA39 /* StatusNormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69651C0520C0ED1F002BEA39 /* StatusNormalCell.swift */; };
 		697C3D9B2086CED600FD9867 /* StatusListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697C3D9A2086CED600FD9867 /* StatusListViewModel.swift */; };
+		6987174F20B4F8E400F1FC61 /* StatusRetweetedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6987174E20B4F8E400F1FC61 /* StatusRetweetedCell.swift */; };
 		6989CB7B208ED5B9001BF238 /* StatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6989CB7A208ED5B9001BF238 /* StatusCell.swift */; };
 		69941DF51F8F17F100326914 /* NetworkTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69941DF41F8F17F100326914 /* NetworkTools.swift */; };
 		69BB73DE1FE0D03300A48CC7 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BB73DD1FE0D03300A48CC7 /* Common.swift */; };
@@ -95,7 +97,9 @@
 		695786FF20ABCF700050DA1E /* StatusPictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusPictureView.swift; sourceTree = "<group>"; };
 		695FB1F71FAACBBE00A2A217 /* UserAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountViewModel.swift; sourceTree = "<group>"; };
 		6962F9BD1FB3FBC5006F28CD /* NewFeatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewFeatureViewController.swift; sourceTree = "<group>"; };
+		69651C0520C0ED1F002BEA39 /* StatusNormalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusNormalCell.swift; sourceTree = "<group>"; };
 		697C3D9A2086CED600FD9867 /* StatusListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusListViewModel.swift; sourceTree = "<group>"; };
+		6987174E20B4F8E400F1FC61 /* StatusRetweetedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusRetweetedCell.swift; sourceTree = "<group>"; };
 		6989CB7A208ED5B9001BF238 /* StatusCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusCell.swift; sourceTree = "<group>"; };
 		69941DF41F8F17F100326914 /* NetworkTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTools.swift; sourceTree = "<group>"; };
 		69BB73DD1FE0D03300A48CC7 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
@@ -346,6 +350,8 @@
 				6934A2302090094800BF5D27 /* StatusCellTopView.swift */,
 				6936EF3220900D750027CDDB /* StatusCellBottomView.swift */,
 				695786FF20ABCF700050DA1E /* StatusPictureView.swift */,
+				6987174E20B4F8E400F1FC61 /* StatusRetweetedCell.swift */,
+				69651C0520C0ED1F002BEA39 /* StatusNormalCell.swift */,
 			);
 			path = StatusCell;
 			sourceTree = "<group>";
@@ -593,6 +599,7 @@
 				6934A2312090094800BF5D27 /* StatusCellTopView.swift in Sources */,
 				69941DF51F8F17F100326914 /* NetworkTools.swift in Sources */,
 				69074B161F8DBD5A00F01EF0 /* MainViewController.swift in Sources */,
+				6987174F20B4F8E400F1FC61 /* StatusRetweetedCell.swift in Sources */,
 				6957870020ABCF700050DA1E /* StatusPictureView.swift in Sources */,
 				69074ADF1F8DBA5600F01EF0 /* ViewController.swift in Sources */,
 				69CB42891F96F3A300259FE2 /* OAuthViewController.swift in Sources */,
@@ -601,6 +608,7 @@
 				69198CCA1FBD3FBB00BAB626 /* UILabel+Extension.swift in Sources */,
 				695FB1F81FAACBBE00A2A217 /* UserAccountViewModel.swift in Sources */,
 				69BCA9DE208995D1004E81A5 /* User.swift in Sources */,
+				69651C0620C0ED1F002BEA39 /* StatusNormalCell.swift in Sources */,
 				69074B181F8DBD9500F01EF0 /* DiscoverTableViewController.swift in Sources */,
 				69535FC72064845D00C329A8 /* Status.swift in Sources */,
 				69074ADD1F8DBA5600F01EF0 /* AppDelegate.swift in Sources */,

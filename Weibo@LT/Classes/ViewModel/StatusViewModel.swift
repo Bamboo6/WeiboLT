@@ -10,15 +10,35 @@ import Foundation
 import UIKit
 
 class StatusViewModel: CustomStringConvertible {
+    /// 可重用标识符
+    var cellId: String {
+        return status.retweeted_status != nil ? StatusCellRetweetedId: StatusCellNormalId
+    }
+    
+    /// 被转发原创微博的文字
+    var retweetedText: String? {
+        guard let s = status.retweeted_status else {
+            return nil
+        }
+        return "@" + (s.user?.screen_name ?? "") + ":" + (s.text ?? "")
+    }
     
     /// 行高
     lazy var rowHeight: CGFloat = {
         // print("计算缓存行高 \(self.status.text)")
-//        var cell: StatusCell
+        var cell: StatusCell
         
         // 实例化 cell
-        let cell = StatusCell(style: .default, reuseIdentifier: StatusCellNormalId)
+        if self.status.retweeted_status != nil {
+            cell = StatusRetweetedCell(style: .default, reuseIdentifier:StatusCellRetweetedId)
+        } else {
+            cell = StatusNormalCell(style: .default, reuseIdentifier:StatusCellNormalId)
+        }
         
+        // 实例化 cell
+//        let cell = StatusCell(style: .default, reuseIdentifier: StatusCellNormalId)
+//        let cell = StatusRetweetedCell(style: .default, reuseIdentifier: StatusCellRetweetedId)
+           
         // 返回行高
         return cell.rowHeight(vm: self)
     }()
@@ -39,11 +59,11 @@ class StatusViewModel: CustomStringConvertible {
         self.status = status
         
         // 根据模型，来生成缩略图的数组
-        if (status.pic_urls?.count)! > 0 {
+        if let urls = status.retweeted_status?.pic_urls ?? status.pic_urls  {
             // 创建缩略图数组
             thumbnailUrls = [NSURL]()
             // 遍历字典数组 - 数组如果是可选的，不允许遍历，原因：数组是通过下标来检索数据
-            for dict in status.pic_urls! {
+            for dict in urls {
                 // 因为字典是按照 key 来取值，如果 key 错误，会返回 nil
                 let url = NSURL(string: dict["thumbnail_pic"]!)
                 // 相信服务器返回的 url 字符串一定能够生成
@@ -84,6 +104,7 @@ class StatusViewModel: CustomStringConvertible {
     }
     
 }
+
 
 
 

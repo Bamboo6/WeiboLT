@@ -9,7 +9,11 @@
 import UIKit
 import SVProgressHUD
 
-let StatusCellNormalId = "StatusCellNormalId"//微博cell（表格单元）的可重用表示符
+/// 原创微博 Cell 的可重用表示符号
+let StatusCellNormalId = "StatusCellNormalId"
+
+/// 转发微博 Cell 的可重用标识符号
+let StatusCellRetweetedId = "StatusCellRetweetedId"
 
 class HomeTableViewController: VisitorTableViewController {
     
@@ -53,12 +57,22 @@ class HomeTableViewController: VisitorTableViewController {
 //        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
         // Configure the cell...
-        let cell = tableView.dequeueReusableCell(withIdentifier: StatusCellNormalId, for: indexPath) as! StatusCell
+//        let cell = tableView.dequeueReusableCell(withIdentifier: StatusCellNormalId, for: indexPath) as! StatusCell
+//        let cell = tableView.dequeueReusableCell(withIdentifier: StatusCellRetweetedId, for: indexPath) as! StatusCell
                 // 测试微博信息内容
         //        cell.textLabel?.text = dataList![indexPath.row].text
 //                cell.textLabel?.text = listViewModel.statusList[indexPath.row].text
 //        cell.textLabel?.text=listViewModel.statusList[indexPath.row].status.user?.screen_name
-        cell.viewModel = listViewModel.statusList[indexPath.row]
+//        cell.viewModel = listViewModel.statusList[indexPath.row]
+        
+        // 1.获取视图模型
+        let vm = listViewModel.statusList[indexPath.row]
+        
+        // 2.获取可重用 cell 会调用行高方法！
+        let cell = tableView.dequeueReusableCell(withIdentifier: vm.cellId, for: indexPath) as! StatusCell
+        
+        // 3.设置视图模型
+        cell.viewModel = vm
         
         return cell
     }
@@ -156,15 +170,21 @@ class HomeTableViewController: VisitorTableViewController {
     
     /// 准备表格
     public func prepareTableView() {
+        tableView.register(StatusNormalCell.self, forCellReuseIdentifier: StatusCellNormalId)
+        tableView.register(StatusRetweetedCell.self, forCellReuseIdentifier: StatusCellRetweetedId)
         // 注册可重用 cell
-        tableView.register(StatusCell.self,forCellReuseIdentifier: StatusCellNormalId)
+//        tableView.register(StatusCell.self,forCellReuseIdentifier: StatusCellNormalId)
         // 测试行高
-        tableView.rowHeight = 200
+//        tableView.rowHeight = 200
         // 取消分割线
         tableView.separatorStyle = .none
         // 自动计算行高 - 需要一个自上而下的自动布局的控件，指定一个向下的约束
         tableView.estimatedRowHeight = 400
         tableView.rowHeight = 400 //UITableViewAutomaticDimension
+        
+        // 注册可重用 cell
+//        tableView.register(StatusRetweetedCell.self, forCellReuseIdentifier: StatusCellRetweetedId)
+        tableView.register(StatusNormalCell.self, forCellReuseIdentifier: StatusCellNormalId)
     }
     
     override func didReceiveMemoryWarning() {

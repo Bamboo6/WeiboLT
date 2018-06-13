@@ -21,9 +21,9 @@ class StatusCell: UITableViewCell {
             topView.viewModel = viewModel
             contentLabel.text = viewModel?.status.text
             // 测试动态修改行高
-            pictureView.snp.updateConstraints { (make) -> Void in
-                make.height.equalTo(Int(arc4random()) % 4 * 90)
-            }
+//            pictureView.snp.updateConstraints { (make) -> Void in
+//                make.height.equalTo(Int(arc4random()) % 4 * 90)
+//            }
             // 设置配图视图 － 设置视图模型之后，配图视图有能力计算大小
             pictureView.viewModel = viewModel
             pictureView.snp.updateConstraints { (make) -> Void in
@@ -72,7 +72,7 @@ class StatusCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
 }
 
 // MARK: - 设置界面
@@ -99,13 +99,13 @@ extension StatusCell {
             make.left.equalTo(contentView.snp.left).offset(StatusCellMargin)
         }
         
-        // 配图视图
-        pictureView.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(contentLabel.snp.bottom).offset(StatusCellMargin)
-            make.left.equalTo(contentLabel.snp.left)
-            make.width.equalTo(300)
-            make.height.equalTo(90)
-        }
+//        // 配图视图
+//        pictureView.snp.makeConstraints { (make) -> Void in
+//            make.top.equalTo(contentLabel.snp.bottom).offset(StatusCellMargin)
+//            make.left.equalTo(contentLabel.snp.left)
+//            make.width.equalTo(300)
+//            make.height.equalTo(90)
+//        }
         
         // 3> 底部视图
         bottomView.snp.makeConstraints { (make) -> Void in
