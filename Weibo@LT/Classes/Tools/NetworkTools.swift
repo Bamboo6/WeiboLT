@@ -26,7 +26,6 @@ class NetworkTools: AFHTTPSessionManager {
         return tools
     }()
     
-    
 }
 
 extension NetworkTools{
@@ -49,7 +48,7 @@ extension NetworkTools{
         
     }
     //加载用户信息
-    func loadUserInfo(uid: String, accessToken:String,finished:@escaping HMRequestCallBack) {
+    func loadUserInfo(uid: String, /*accessToken:String,*/finished:@escaping HMRequestCallBack) {
         // 1. 获取token字典
         guard var params=tokenDict else {
             //如果字典为nil，通知调用方token无效
@@ -121,13 +120,28 @@ extension NetworkTools {
     /// - parameter since_id: 若指定此参数，则返回ID比since_id大的微博，默认为0。
     /// - parameter max_id: 若指定此参数，则返回ID小于或等于`max_id`的微博，默认为0
     /// - parameter finished: 完成回调
-    func loadStatus(finished: @escaping HMRequestCallBack) {
-        // 1. 获取 token 字典
-        guard let params = tokenDict else {
-            // 如果字典为 nil ，通知调用方，token 无效
-            finished(nil, NSError(domain: "cn.itcast.error",
-                code: -1001, userInfo: ["message": "token 为空"]))
+    func loadStatus(since_id: Int, max_id: Int,finished: @escaping HMRequestCallBack) {
+//        // 1. 获取 token 字典
+//        guard let params = tokenDict else {
+//            // 如果字典为 nil ，通知调用方，token 无效
+//            finished(nil, NSError(domain: "cn.itcast.error",
+//                code: -1001, userInfo: ["message": "token 为空"]))
+//            return
+//        }
+        // 1. 创建参数字典
+        var params = [String: AnyObject]()
+        guard let p = tokenDict else{
+            finished(nil,NSError(domain:"cn.itcast.error",code:-1001,userInfo:["message":"token is nil"]))
             return
+        }
+        print("access_token:\(p)")
+        params["access_token"] = p["access_token"]
+        
+        // 判断是否下拉
+        if since_id > 0 {
+            params["since_id"] = since_id as AnyObject
+        } else if max_id > 0 {  // 上拉参数
+            params["max_id"] = max_id - 1 as AnyObject
         }
         
         // 2. 准备网络参数

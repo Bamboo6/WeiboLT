@@ -74,6 +74,14 @@ class HomeTableViewController: VisitorTableViewController {
         // 3.设置视图模型
         cell.viewModel = vm
         
+        // 4. 判断是否是最后一条微博
+        if indexPath.row == listViewModel.statusList.count - 1 && !pullupView.isAnimating {
+            // 开始动画
+            pullupView.startAnimating()
+            // 上拉刷新数据
+            loadData()
+        }
+        
         return cell
     }
     
@@ -126,7 +134,11 @@ class HomeTableViewController: VisitorTableViewController {
     */
     
     /// 加载数据
+    @objc
     public func loadData() {
+        refreshControl?.beginRefreshing()
+        // 关闭刷新控件
+//        self.refreshControl?.endRefreshing()
         //        NetworkTools.sharedTools.loadStatus { (result, error) -> () in
         //            if error != nil {
         //                print("出错了")
@@ -156,16 +168,69 @@ class HomeTableViewController: VisitorTableViewController {
         //        // 刷新数据
         //        self.tableView.reloadData()
         
-        listViewModel.loadStatus{ (isSuccessed)->() in
+        listViewModel.loadStatus(isPullup: pullupView.isAnimating){ (isSuccessed)->() in
+            // 关闭刷新控件
+            self.refreshControl?.endRefreshing()
+            // 关闭上拉刷新
+            self.pullupView.stopAnimating()
+            
             if !isSuccessed {
                 SVProgressHUD.showInfo(withStatus: "加载数据错误，请稍后再试")
                 return
             }
             print(self.listViewModel.statusList)
+            // 显示下拉刷新提示
+            self.showPulldownTip()
             // 刷新数据
             self.tableView.reloadData()
         }
         
+    }
+    
+    // MARK: - 懒加载控件
+    /// 上拉刷新提示视图
+    private lazy var pullupView: UIActivityIndicatorView = {
+        
+        let indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
+        indicator.color = UIColor.lightGray
+        
+        return indicator
+    }()
+    
+    /// 下拉刷新提示标签
+    private lazy var pulldownTipLabel: UILabel = {
+        
+        let label = UILabel(title: "", fontSize: 18, color: UIColor.white)
+        label.backgroundColor = UIColor.orange
+        
+        // 添加到 navigationBar
+        self.navigationController?.navigationBar.insertSubview(label, at: 0)
+        
+        return label
+    }()
+    
+    /// 显示下拉刷新
+    private func showPulldownTip() {
+        
+        // 如果不是下拉刷新直接返回
+        guard let count = listViewModel.pulldownCount else {
+            return
+        }
+        
+        pulldownTipLabel.text = (count == 0) ? "没有新微博" : "刷新到 \(count) 条微博"
+        
+        let height: CGFloat = 44
+        let rect = CGRect(x: 0, y: 0, width: view.bounds.width, height: height)
+        pulldownTipLabel.frame =  rect.offsetBy(dx: 0, dy: -2 * height)
+        
+        UIView.animate(withDuration: 1.0, animations: {
+            () -> Void in
+            self.pulldownTipLabel.frame = rect.offsetBy(dx: 0, dy: height)
+        }) { (_) -> Void in
+            UIView.animate(withDuration: 1.0) {
+                self.pulldownTipLabel.frame = rect.offsetBy(dx: 0, dy: -2 * height)
+            }
+        }
     }
     
     /// 准备表格
@@ -181,17 +246,24 @@ class HomeTableViewController: VisitorTableViewController {
         // 自动计算行高 - 需要一个自上而下的自动布局的控件，指定一个向下的约束
         tableView.estimatedRowHeight = 400
         tableView.rowHeight = 400 //UITableViewAutomaticDimension
+        // 下拉刷新控件默认没有 - 高度 60
+        refreshControl = WBRefreshControl()
+        // 添加监听方法
+        refreshControl?.addTarget(self, action: #selector(HomeTableViewController.loadData), for:UIControlEvents.valueChanged)
         
         // 注册可重用 cell
 //        tableView.register(StatusRetweetedCell.self, forCellReuseIdentifier: StatusCellRetweetedId)
         tableView.register(StatusNormalCell.self, forCellReuseIdentifier: StatusCellNormalId)
+        
+        // 上拉刷新视图
+        tableView.tableFooterView = pullupView
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
 }
 
 extension HomeTableViewController{

@@ -88,7 +88,8 @@ extension UserAccountViewModel {
     /// - parameter account: 用户账户对象
     private func loadUserInfo(account: UserAccount, finished: @escaping (_ isSuccessed: Bool)->()) {
         
-        NetworkTools.sharedTools.loadUserInfo(uid: account.uid!, accessToken: account.access_token!){
+        NetworkTools.sharedTools.loadUserInfo(uid: account.uid!)//, accessToken: account.access_token!)
+        {
             (result, error) in
             if error != nil {
                 print("加载用户出错了")

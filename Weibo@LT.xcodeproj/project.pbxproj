@@ -37,6 +37,8 @@
 		697C3D9B2086CED600FD9867 /* StatusListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697C3D9A2086CED600FD9867 /* StatusListViewModel.swift */; };
 		6987174F20B4F8E400F1FC61 /* StatusRetweetedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6987174E20B4F8E400F1FC61 /* StatusRetweetedCell.swift */; };
 		6989CB7B208ED5B9001BF238 /* StatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6989CB7A208ED5B9001BF238 /* StatusCell.swift */; };
+		698A13D320D0AAF800427CBF /* WBRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698A13D220D0AAF800427CBF /* WBRefreshControl.swift */; };
+		698A13D720D0ABA100427CBF /* WBRefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 698A13D620D0ABA100427CBF /* WBRefreshView.xib */; };
 		69941DF51F8F17F100326914 /* NetworkTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69941DF41F8F17F100326914 /* NetworkTools.swift */; };
 		69BB73DE1FE0D03300A48CC7 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BB73DD1FE0D03300A48CC7 /* Common.swift */; };
 		69BCA9DE208995D1004E81A5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BCA9DD208995D1004E81A5 /* User.swift */; };
@@ -101,6 +103,8 @@
 		697C3D9A2086CED600FD9867 /* StatusListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusListViewModel.swift; sourceTree = "<group>"; };
 		6987174E20B4F8E400F1FC61 /* StatusRetweetedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusRetweetedCell.swift; sourceTree = "<group>"; };
 		6989CB7A208ED5B9001BF238 /* StatusCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusCell.swift; sourceTree = "<group>"; };
+		698A13D220D0AAF800427CBF /* WBRefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WBRefreshControl.swift; sourceTree = "<group>"; };
+		698A13D620D0ABA100427CBF /* WBRefreshView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WBRefreshView.xib; sourceTree = "<group>"; };
 		69941DF41F8F17F100326914 /* NetworkTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTools.swift; sourceTree = "<group>"; };
 		69BB73DD1FE0D03300A48CC7 /* Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		69BCA9DD208995D1004E81A5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -273,6 +277,7 @@
 		69074B101F8DBC6800F01EF0 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				698A13D120D0AA2F00427CBF /* RefreshView */,
 				6989CB79208ED577001BF238 /* StatusCell */,
 				69074B191F8DBDA300F01EF0 /* HomeTableViewController.swift */,
 			);
@@ -354,6 +359,15 @@
 				69651C0520C0ED1F002BEA39 /* StatusNormalCell.swift */,
 			);
 			path = StatusCell;
+			sourceTree = "<group>";
+		};
+		698A13D120D0AA2F00427CBF /* RefreshView */ = {
+			isa = PBXGroup;
+			children = (
+				698A13D220D0AAF800427CBF /* WBRefreshControl.swift */,
+				698A13D620D0ABA100427CBF /* WBRefreshView.xib */,
+			);
+			path = RefreshView;
 			sourceTree = "<group>";
 		};
 		69CB42871F96F36F00259FE2 /* OAuth */ = {
@@ -487,6 +501,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				69074AE71F8DBA5600F01EF0 /* LaunchScreen.storyboard in Resources */,
+				698A13D720D0ABA100427CBF /* WBRefreshView.xib in Resources */,
 				69074AE41F8DBA5600F01EF0 /* Assets.xcassets in Resources */,
 				69074AE21F8DBA5600F01EF0 /* Main.storyboard in Resources */,
 			);
@@ -598,6 +613,7 @@
 				69198CC61FBD3A4E00BAB626 /* WelcomeViewController.swift in Sources */,
 				6934A2312090094800BF5D27 /* StatusCellTopView.swift in Sources */,
 				69941DF51F8F17F100326914 /* NetworkTools.swift in Sources */,
+				698A13D320D0AAF800427CBF /* WBRefreshControl.swift in Sources */,
 				69074B161F8DBD5A00F01EF0 /* MainViewController.swift in Sources */,
 				6987174F20B4F8E400F1FC61 /* StatusRetweetedCell.swift in Sources */,
 				6957870020ABCF700050DA1E /* StatusPictureView.swift in Sources */,
